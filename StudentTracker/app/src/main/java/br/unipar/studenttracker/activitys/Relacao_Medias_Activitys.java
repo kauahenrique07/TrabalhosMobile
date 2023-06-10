@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import java.lang.reflect.Array;
+
 import br.unipar.studenttracker.R;
 public class Relacao_Medias_Activitys extends AppCompatActivity {
 
@@ -11,5 +13,7 @@ public class Relacao_Medias_Activitys extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.relacao_medias);
+
+
     }
 }

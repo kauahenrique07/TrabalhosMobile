@@ -9,7 +9,13 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import br.unipar.studenttracker.R;
+import br.unipar.studenttracker.model.Aluno;
 
 public class Cadastro_Notas_Activitys extends AppCompatActivity {
 
@@ -20,6 +26,9 @@ public class Cadastro_Notas_Activitys extends AppCompatActivity {
     private Spinner selectBimestre;
     private Button btnAdd;
     private Button btnViewNotas;
+    private List<Aluno> listaAlunos = new ArrayList<>();
+
+    private List<String> listaNotas = new ArrayList<>();
     private Button btnViewMedias; // Botão para visualizar as médias
 
     @Override
@@ -59,22 +68,32 @@ public class Cadastro_Notas_Activitys extends AppCompatActivity {
     }
 
     private void adicionarNota() {
+        // Obtenha os dados dos campos de entrada
         String ra = editRa.getText().toString().trim();
         String nome = editNome.getText().toString().trim();
         String disciplina = selectDisciplina.getSelectedItem().toString().trim();
         String nota = editNota.getText().toString().trim();
         String bimestre = selectBimestre.getSelectedItem().toString().trim();
 
+        // Verifique se algum campo está vazio
         if (TextUtils.isEmpty(ra) || TextUtils.isEmpty(nome) || TextUtils.isEmpty(disciplina)
                 || TextUtils.isEmpty(nota) || TextUtils.isEmpty(bimestre)) {
             Toast.makeText(this, "Preencha todos os campos!", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        // Crie um novo objeto Aluno
+        Aluno aluno = new Aluno(ra, nome, disciplina, nota, bimestre);
+
+        // Adicione o aluno à lista de alunos
+        listaAlunos.add(aluno);
+        listaNotas.add(nota);
+
+        // Notifique o usuário sobre a adição da nota
         String mensagem = "Nota cadastrada com sucesso!";
         Toast.makeText(this, mensagem, Toast.LENGTH_SHORT).show();
 
-        // Limpar os campos após adicionar a nota
+        // Limpe os campos após adicionar a nota
         editRa.setText("");
         editNome.setText("");
         selectDisciplina.setSelection(0);
@@ -82,8 +101,11 @@ public class Cadastro_Notas_Activitys extends AppCompatActivity {
         selectBimestre.setSelection(0);
     }
 
+
     private void abrirTelaRelacaoNotas() {
         Intent intent = new Intent(this, Relacao_Notas_Activitys.class);
+        intent.putExtra("listaAlunos", (Serializable) listaAlunos);
+        intent.putExtra("listaNotas", (Serializable) listaNotas);
         startActivity(intent);
     }
 

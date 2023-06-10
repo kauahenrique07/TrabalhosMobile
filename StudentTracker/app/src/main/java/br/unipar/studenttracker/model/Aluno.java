@@ -2,13 +2,13 @@ package br.unipar.studenttracker.model;
 
 public class Aluno {
 
-    private int ra;
+    private String ra;
     private String nome;
     private String disciplina;
-    private double nota;
-    private int bimestre;
+    private String nota;
+    private String bimestre;
 
-    public Aluno(int ra, String nome, String disciplina, double nota, int bimestre) {
+    public Aluno(String ra, String nome, String disciplina, String nota, String bimestre) {
         this.ra = ra;
         this.nome = nome;
         this.disciplina = disciplina;
@@ -16,11 +16,11 @@ public class Aluno {
         this.bimestre = bimestre;
     }
 
-    public int getRa() {
+    public String getRa() {
         return ra;
     }
 
-    public void setRa(int ra) {
+    public void setRa(String ra) {
         this.ra = ra;
     }
 
@@ -40,31 +40,24 @@ public class Aluno {
         this.disciplina = disciplina;
     }
 
-    public double getNota() {
+    public String getNota() {
         return nota;
     }
 
-    public void setNota(double nota) {
+    public void setNota(String nota) {
         this.nota = nota;
     }
 
-    public int getBimestre() {
+    public String getBimestre() {
         return bimestre;
     }
 
-    public void setBimestre(int bimestre) {
+    public void setBimestre(String bimestre) {
         this.bimestre = bimestre;
     }
 
     @Override
     public String toString() {
-        return "Aluno{" +
-                "ra=" + ra +
-                ", nome='" + nome + '\'' +
-                ", disciplina='" + disciplina + '\'' +
-                ", nota=" + nota +
-                ", bimestre=" + bimestre +
-                '}';
+        return nome;
     }
 }
-
