@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">StudentTracker</string>
+
+    <string-array name="disciplines">
+        <item> </item>
+        <item>PROJETO INTEGRADOR</item>
+        <item>DESENVOLVIMENTO WEB</item>
+        <item>QUALIDADE DE SOFTWARE</item>
+        <item>GERENCIA DE PROJETOS</item>
+        <item>EMPREENDEDORISMO</item>
+        <item>RELAÇÕES INTERPESSOAIS</item>
+    </string-array>
+
+    <string-array name="bimestres">
+        <item> </item>
+        <item>1º</item>
+        <item>2º</item>
+        <item>3º</item>
+        <item>4º</item>
+
+    </string-array>
+
+</resources>
