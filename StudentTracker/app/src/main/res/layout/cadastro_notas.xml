@@ -57,8 +57,7 @@
             android:id="@+id/select_disciplina"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:entries="@array/disciplines" />
+            android:layout_marginTop="10dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -101,8 +100,7 @@
                 android:id="@+id/select_bimestre"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:entries="@array/bimestres" />
+                android:layout_weight="1"/>
 
         </LinearLayout>
 

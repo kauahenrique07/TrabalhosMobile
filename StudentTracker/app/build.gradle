@@ -16,6 +16,10 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    tasks.withType(JavaCompile) {
+        options.compilerArgs << "-Xlint:unchecked"
+    }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -30,6 +34,7 @@ android {
         viewBinding true
     }
 }
+
 
 dependencies {
 

@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Média:"
-            android:gravity="end"
+            android:layout_marginLeft="240dp"
             android:id="@+id/tvMedia"/>
 
 
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="APROV/REPROV"
-            android:gravity="end"
+            android:layout_marginLeft="240dp"
             android:id="@+id/tvResultado"/>
 
 

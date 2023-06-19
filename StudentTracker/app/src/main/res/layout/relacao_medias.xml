@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:padding="16dp"
-            android:text="RELAÇÃO DE NOTAS"
+            android:text="RELAÇÃO DE MÉDIAS"
             android:textSize="20sp"
             android:textStyle="bold"
             android:background="@drawable/title_background"/>
@@ -33,14 +33,13 @@
             android:id="@+id/select_ra"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:entries="@array/disciplines" />
+            android:layout_marginTop="10dp" />
 
         <ListView
             android:id="@+id/lvNotas"
             android:layout_width="wrap_content"
-            android:layout_height="519dp"
-            android:layout_marginTop="20dp"/>
+            android:layout_height="708dp"
+            android:layout_marginTop="20dp" />
 
 
     </LinearLayout>
