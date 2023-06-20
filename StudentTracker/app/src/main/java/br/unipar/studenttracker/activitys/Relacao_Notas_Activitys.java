@@ -40,7 +40,7 @@ public class Relacao_Notas_Activitys extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedRA = (String) spRA.getSelectedItem();
-                if (!selectedRA.isEmpty()) {
+                if (!selectedRA.isEmpty() && !selectedRA.equals("TODOS")) {
                     List<Aluno> filteredList = Globais.listaAluno.stream()
                             .filter(aluno -> String.valueOf(aluno.getRa()).equals(selectedRA))
                             .collect(Collectors.toList());
@@ -69,6 +69,9 @@ public class Relacao_Notas_Activitys extends AppCompatActivity {
 
         // Converta o Set em uma List para usar com o ArrayAdapter
         List<String> raList = new ArrayList<>(raSet);
+
+        // Adicione a opção "TODAS" à lista
+        raList.add(0, "TODOS");
 
         // Crie um ArrayAdapter para o Spinner
         ArrayAdapter<String> adapterRA = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, raList);

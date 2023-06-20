@@ -21,7 +21,7 @@ public class Relacao_Medias_Activitys extends AppCompatActivity {
 
     private Spinner spDisciplina;
     private ListView lvMedias;
-    private String[] vetorDisciplinas = new String[]{"", "DEV. WEB", "PROJETO INT.",
+    private String[] vetorDisciplinas = new String[]{"TODAS", "DEV. WEB", "PROJETO INT.",
             "QUALIDADE", "GERÊNCIA", "DEV. FRAMEWORKS", "EMPREENDEDORISMO",
             "RELAÇÕES"};
 
@@ -41,7 +41,7 @@ public class Relacao_Medias_Activitys extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedDisciplina = (String) spDisciplina.getSelectedItem();
-                if (!selectedDisciplina.isEmpty()) {
+                if (!selectedDisciplina.isEmpty() && !selectedDisciplina.equals("TODAS")) {
                     List<Aluno> filteredList = Globais.listaAluno.stream()
                             .filter(aluno -> aluno.getDisciplina() != null && aluno.getDisciplina().equals(selectedDisciplina))
                             .collect(Collectors.toList());
