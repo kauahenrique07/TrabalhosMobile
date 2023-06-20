@@ -9,7 +9,10 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import br.unipar.studenttracker.R;
@@ -56,9 +59,22 @@ public class Relacao_Notas_Activitys extends AppCompatActivity {
     }
 
     private void updateRAList() {
-        List<String> raList = Globais.listaAluno.stream().map(aluno -> String.valueOf(aluno.getRa())).collect(Collectors.toList());
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, raList);
-        spRA.setAdapter(adapter);
+        // Crie um Set para armazenar os RAs únicos
+        Set<String> raSet = new HashSet<>();
+
+        // Adicione RAs dos alunos no Set
+        for (Aluno aluno : Globais.listaAluno) {
+            raSet.add(String.valueOf(aluno.getRa()));
+        }
+
+        // Converta o Set em uma List para usar com o ArrayAdapter
+        List<String> raList = new ArrayList<>(raSet);
+
+        // Crie um ArrayAdapter para o Spinner
+        ArrayAdapter<String> adapterRA = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, raList);
+
+        // Defina o adapter para o Spinner
+        spRA.setAdapter(adapterRA);
     }
 
     private void updateNotaList() {

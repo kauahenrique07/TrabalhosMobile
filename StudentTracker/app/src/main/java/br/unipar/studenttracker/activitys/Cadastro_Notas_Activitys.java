@@ -114,14 +114,12 @@ public class Cadastro_Notas_Activitys extends AppCompatActivity {
                     return;
                 }
 
+                int raInt = Integer.parseInt(ra);
+
                 Aluno alunoExistente = null;
                 for (Aluno aluno : Globais.listaAluno) {
-                    if (aluno.getRa() == Integer.parseInt(ra)) {
+                    if (aluno.getRa() == raInt && aluno.getDisciplina().equals(disciplina)) {
                         alunoExistente = aluno;
-                        if (!aluno.getNome().equals(nome)) {
-                            Toast.makeText(Cadastro_Notas_Activitys.this, "RA já cadastrado com nome diferente!", Toast.LENGTH_SHORT).show();
-                            return;
-                        }
                         break;
                     }
                 }
@@ -139,7 +137,7 @@ public class Cadastro_Notas_Activitys extends AppCompatActivity {
                     Toast.makeText(Cadastro_Notas_Activitys.this, "Nota do aluno atualizada com sucesso!", Toast.LENGTH_SHORT).show();
                 } else {
                     Aluno novoAluno = new Aluno();
-                    novoAluno.setRa(Integer.parseInt(ra));
+                    novoAluno.setRa(raInt);
                     novoAluno.setNome(nome);
                     novoAluno.setDisciplina(disciplina);
                     if (bimestre.equals("1º")) {
@@ -156,8 +154,6 @@ public class Cadastro_Notas_Activitys extends AppCompatActivity {
                 }
 
                 // Limpar campos depois de adicionar
-                etRA.setText("");
-                etNome.setText("");
                 spDisciplina.setSelection(0);
                 etNota.setText("");
                 spBimestre.setSelection(0);
@@ -191,6 +187,5 @@ public class Cadastro_Notas_Activitys extends AppCompatActivity {
         });
     }
 }
-
 
 
