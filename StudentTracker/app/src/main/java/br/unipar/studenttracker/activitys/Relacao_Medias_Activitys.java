@@ -22,7 +22,7 @@ public class Relacao_Medias_Activitys extends AppCompatActivity {
     private Spinner spDisciplina;
     private ListView lvMedias;
     private String[] vetorDisciplinas = new String[]{"TODAS", "DEV. WEB", "PROJETO INT.",
-            "QUALIDADE", "GERÊNCIA", "DEV. FRAMEWORKS", "EMPREENDEDORISMO",
+            "QUALIDADE", "GERÊNCIA", "FRAMEWORKS", "EMPREENDEDORISMO",
             "RELAÇÕES"};
 
 
