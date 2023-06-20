@@ -42,9 +42,9 @@ public class Cadastro_Notas_Activitys extends AppCompatActivity {
         String[] vetorBimestres = new String[]{"", "1º", "2º", "3º", "4º"};
         ArrayAdapter adapterBimestre = new ArrayAdapter(this, android.R.layout.simple_list_item_1, vetorBimestres);
 
-        String[] vetorDisciplinas = new String[]{"", "DESENVOLVIMENTO WEB", "PROJETO INTEGRADOR",
-                "QUALIDADE DE SOFTWARE", "GERÊNCIA DE PROJEOTS", "FRAMEWORKS", "EMPREENDEDORISMO",
-                "RELAÇÕES INTERPESSOAIS"};
+        String[] vetorDisciplinas = new String[]{"", "DEV. WEB", "PROJETO INT.",
+                "QUALIDADE", "GERÊNCIA", "FRAMEWORKS", "EMPREENDEDORISMO",
+                "RELAÇÕES"};
         ArrayAdapter adapterDisciplina = new ArrayAdapter(this, android.R.layout.simple_list_item_1, vetorDisciplinas);
 
         spDisciplina.setAdapter(adapterDisciplina);
@@ -83,47 +83,110 @@ public class Cadastro_Notas_Activitys extends AppCompatActivity {
                 String nota = etNota.getText().toString().trim();
                 String bimestre = spBimestre.getSelectedItem().toString();
 
-                if (!ra.isEmpty() && !nome.isEmpty() && !disciplina.isEmpty() && !nota.isEmpty() && !bimestre.isEmpty()) {
-                    Aluno aluno = new Aluno();
-                    aluno.setRa(Integer.parseInt(ra));
-                    aluno.setNome(nome);
-                    aluno.setDisciplina(disciplina);
-                    if (bimestre.equals("1º")) {
-                        aluno.setPriBim(Double.parseDouble(nota));
-                    } else if (bimestre.equals("2º")) {
-                        aluno.setSegBim(Double.parseDouble(nota));
-                    } else if (bimestre.equals("3º")) {
-                        aluno.setTercBim(Double.parseDouble(nota));
-                    } else if (bimestre.equals("4º")) {
-                        aluno.setQuarBim(Double.parseDouble(nota));
-                    }
-                    Globais.listaAluno.add(aluno);
-                    Toast.makeText(Cadastro_Notas_Activitys.this, "Aluno adicionado com sucesso!", Toast.LENGTH_SHORT).show();
-                    // Limpar campos depois de adicionar
-                    etRA.setText("");
-                    etNome.setText("");
-                    spDisciplina.setSelection(0);
-                    etNota.setText("");
-                    spBimestre.setSelection(0);
-                } else {
+                // Verificar se todos os campos estão preenchidos
+                if (ra.isEmpty() || nome.isEmpty() || disciplina.isEmpty() || nota.isEmpty() || bimestre.isEmpty()) {
                     Toast.makeText(Cadastro_Notas_Activitys.this, "Por favor preencha todos os campos!", Toast.LENGTH_SHORT).show();
+                    return;
                 }
+
+                // Verificar se RA contém apenas números inteiros
+                if (!ra.matches("\\d+")) {
+                    Toast.makeText(Cadastro_Notas_Activitys.this, "RA deve conter apenas números inteiros!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Verificar se nome contém apenas letras (incluindo acentuação e ç)
+                if (!nome.matches("^[\\p{L} .'-]+$")) {
+                    Toast.makeText(Cadastro_Notas_Activitys.this, "Nome deve conter apenas letras!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Validar nota
+                double notaDouble;
+                try {
+                    notaDouble = Double.parseDouble(nota);
+                    if (notaDouble < 0.0 || notaDouble > 10.0) {
+                        Toast.makeText(Cadastro_Notas_Activitys.this, "Nota deve ser entre 0.0 e 10.0!", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                } catch (NumberFormatException e) {
+                    Toast.makeText(Cadastro_Notas_Activitys.this, "Formato de nota inválido!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                Aluno alunoExistente = null;
+                for (Aluno aluno : Globais.listaAluno) {
+                    if (aluno.getRa() == Integer.parseInt(ra)) {
+                        alunoExistente = aluno;
+                        if (!aluno.getNome().equals(nome)) {
+                            Toast.makeText(Cadastro_Notas_Activitys.this, "RA já cadastrado com nome diferente!", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
+                        break;
+                    }
+                }
+
+                if (alunoExistente != null) {
+                    if (bimestre.equals("1º")) {
+                        alunoExistente.setPriBim(notaDouble);
+                    } else if (bimestre.equals("2º")) {
+                        alunoExistente.setSegBim(notaDouble);
+                    } else if (bimestre.equals("3º")) {
+                        alunoExistente.setTercBim(notaDouble);
+                    } else if (bimestre.equals("4º")) {
+                        alunoExistente.setQuarBim(notaDouble);
+                    }
+                    Toast.makeText(Cadastro_Notas_Activitys.this, "Nota do aluno atualizada com sucesso!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Aluno novoAluno = new Aluno();
+                    novoAluno.setRa(Integer.parseInt(ra));
+                    novoAluno.setNome(nome);
+                    novoAluno.setDisciplina(disciplina);
+                    if (bimestre.equals("1º")) {
+                        novoAluno.setPriBim(notaDouble);
+                    } else if (bimestre.equals("2º")) {
+                        novoAluno.setSegBim(notaDouble);
+                    } else if (bimestre.equals("3º")) {
+                        novoAluno.setTercBim(notaDouble);
+                    } else if (bimestre.equals("4º")) {
+                        novoAluno.setQuarBim(notaDouble);
+                    }
+                    Globais.listaAluno.add(novoAluno);
+                    Toast.makeText(Cadastro_Notas_Activitys.this, "Aluno adicionado com sucesso!", Toast.LENGTH_SHORT).show();
+                }
+
+                // Limpar campos depois de adicionar
+                etRA.setText("");
+                etNome.setText("");
+                spDisciplina.setSelection(0);
+                etNota.setText("");
+                spBimestre.setSelection(0);
             }
         });
+
+
 
         btnVerNotas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Cadastro_Notas_Activitys.this, Relacao_Notas_Activitys.class);
-                startActivity(intent);
+                if (Globais.listaAluno.isEmpty()) {
+                    Toast.makeText(Cadastro_Notas_Activitys.this, "Adicione pelo menos um aluno antes de acessar esta opção!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(Cadastro_Notas_Activitys.this, Relacao_Notas_Activitys.class);
+                    startActivity(intent);
+                }
             }
         });
 
         btnVerMedias.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Cadastro_Notas_Activitys.this, Relacao_Medias_Activitys.class);
-                startActivity(intent);
+                if (Globais.listaAluno.isEmpty()) {
+                    Toast.makeText(Cadastro_Notas_Activitys.this, "Adicione pelo menos um aluno antes de acessar esta opção!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Intent intent = new Intent(Cadastro_Notas_Activitys.this, Relacao_Medias_Activitys.class);
+                    startActivity(intent);
+                }
             }
         });
     }

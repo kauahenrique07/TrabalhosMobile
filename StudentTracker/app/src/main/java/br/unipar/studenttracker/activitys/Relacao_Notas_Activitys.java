@@ -56,13 +56,20 @@ public class Relacao_Notas_Activitys extends AppCompatActivity {
     }
 
     private void updateRAList() {
-        List<String> nomeList = Globais.listaAluno.stream().map(Aluno::getNome).collect(Collectors.toList());
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, nomeList);
+        List<String> raList = Globais.listaAluno.stream().map(aluno -> String.valueOf(aluno.getRa())).collect(Collectors.toList());
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, raList);
         spRA.setAdapter(adapter);
     }
 
     private void updateNotaList() {
         NotaAdapter adapter = new NotaAdapter(this, Globais.listaAluno);
         lvNotas.setAdapter(adapter);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        updateRAList();
+        updateNotaList();
     }
 }

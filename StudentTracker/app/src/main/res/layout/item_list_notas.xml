@@ -11,19 +11,19 @@
         android:orientation="horizontal">
 
         <TextView
-            android:layout_width="0dp"
+            android:id="@+id/tvDisciplina"
+            android:layout_width="218dp"
             android:layout_height="wrap_content"
-            android:text="Disciplina: "
             android:layout_weight="1"
-            android:id="@+id/tvDisciplina"/>
+            android:text="Disciplina: " />
 
         <TextView
-            android:layout_width="0dp"
+            android:id="@+id/tvMedia"
+            android:layout_width="155dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="85dp"
             android:layout_weight="1"
-            android:text="Média:"
-            android:layout_marginLeft="240dp"
-            android:id="@+id/tvMedia"/>
+            android:text="Média:" />
 
 
 
@@ -44,21 +44,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="2ºBim: "
-            android:layout_marginLeft="60dp"
+            android:layout_marginLeft="20dp"
             android:id="@+id/tvNotaSeg"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="3ºBim: "
-            android:layout_marginLeft="60dp"
+            android:layout_marginLeft="20dp"
             android:id="@+id/tvNotaTerc"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="4ºBim: "
-            android:layout_marginLeft="60dp"
+            android:layout_marginLeft="20dp"
             android:id="@+id/tvNotaQuar"/>
 
 

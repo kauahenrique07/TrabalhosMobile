@@ -56,10 +56,10 @@ public class NotaAdapter extends BaseAdapter {
 
         tvDisciplina.setText("Disciplina: " + aluno.getDisciplina());
         tvMedia.setText("Média: " + aluno.calcularMedia(aluno));
-        tvNotaPri.setText("1ºBim: " + aluno.getPriBim());
-        tvNotaSeg.setText("2ºBim: " + aluno.getSegBim());
-        tvNotaTerc.setText("3ºBim: " + aluno.getTercBim());
-        tvNotaQuar.setText("4ºBim: " + aluno.getQuarBim());
+        tvNotaPri.setText("1ºBim: " + (aluno.getPriBim() != null ? aluno.getPriBim().toString() : ""));
+        tvNotaSeg.setText("2ºBim: " + (aluno.getSegBim() != null ? aluno.getSegBim().toString() : ""));
+        tvNotaTerc.setText("3ºBim: " + (aluno.getTercBim() != null ? aluno.getTercBim().toString() : ""));
+        tvNotaQuar.setText("4ºBim: " + (aluno.getQuarBim() != null ? aluno.getQuarBim().toString() : ""));
 
         return rowView;
     }
