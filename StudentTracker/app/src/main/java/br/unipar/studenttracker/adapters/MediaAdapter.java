@@ -6,31 +6,31 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import br.unipar.studenttracker.model.Aluno;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import br.unipar.studenttracker.R;
 import br.unipar.studenttracker.model.Aluno;
 
 public class MediaAdapter extends BaseAdapter {
 
-    private Context context;
-    private ArrayList<Aluno> lista;
+    private final Context context;
+    private final List<Aluno> alunos;
 
-    public MediaAdapter(Context context, ArrayList<Aluno> lista) {
+    public MediaAdapter(Context context, List<Aluno> alunos) {
         this.context = context;
-        this.lista = lista;
+        this.alunos = alunos;
     }
-
 
     @Override
     public int getCount() {
-        return lista.size();
+        return alunos.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return lista.get(position);
+        return alunos.get(position);
     }
 
     @Override
@@ -39,38 +39,27 @@ public class MediaAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup parent) {
-        if (view == null) {
-            view = LayoutInflater.from(context).
-                    inflate(R.layout.item_list_medias,
-                            parent, false);
-        }
+    public View getView(int position, View convertView, ViewGroup parent) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View rowView = inflater.inflate(R.layout.item_list_medias, parent, false);
 
-        String resultado = "";
+        TextView tvRa = rowView.findViewById(R.id.tvRa);
+        TextView tvMedia = rowView.findViewById(R.id.tvMedia);
+        TextView tvAluno = rowView.findViewById(R.id.tvAluno);
+        TextView tvResultado = rowView.findViewById(R.id.tvResultado);
 
-        Aluno notasAluno = lista.get(position);
+        Aluno aluno = alunos.get(position);
 
-        Double media = (lista.get(position).getPriBim() + lista.get(position).getSegBim() + lista.get(position).getTercBim() + lista.get(position).getQuarBim())/4;
+        tvRa.setText("RA: " + aluno.getRa());
+        double media = aluno.calcularMedia(aluno);
+        tvMedia.setText("Média: " + media);
+        tvAluno.setText("Aluno: " + aluno.getNome());
+        tvResultado.setText(calcularResultado(media));
 
-        if(media >= 60){
-            resultado = "APROVADO";
-        }else{
-            resultado = "REPROVADO";
-        }
+        return rowView;
+    }
 
-        TextView tvAlunoMedia = view.findViewById(R.id.tvMedia);
-        TextView tvRa = view.findViewById(R.id.tvRa);
-        TextView tvResultado = view.findViewById(R.id.tvResultado);
-        TextView tvMediaTotal = view.findViewById(R.id.tvMedia);
-        TextView tvMateria = view.findViewById(R.id.tvDisciplina);
-
-
-        tvAlunoMedia.setText(notasAluno.getNome());
-        tvRa.setText(tvRa.getText().toString() + notasAluno.getRa());
-        tvResultado.setText(resultado);
-        tvMediaTotal.setText(String.valueOf(media));
-        tvMateria.setText(notasAluno.getDisciplina());
-
-        return view;
+    private String calcularResultado(double media) {
+        return media >= 6.0 ? "APROVADO" : "REPROVADO";
     }
 }

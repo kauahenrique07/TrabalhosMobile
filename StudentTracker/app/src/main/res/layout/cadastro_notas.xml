@@ -54,7 +54,7 @@
             android:text="DISCIPLINA:" />
 
         <Spinner
-            android:id="@+id/select_disciplina"
+            android:id="@+id/spDisciplina"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"/>
@@ -97,7 +97,7 @@
                 android:layout_marginRight="50dp"/>
 
             <Spinner
-                android:id="@+id/select_bimestre"
+                android:id="@+id/spBimestre"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"/>

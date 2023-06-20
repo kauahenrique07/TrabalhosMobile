@@ -3,19 +3,12 @@ package br.unipar.studenttracker.model;
 public class Aluno {
     private int ra;
     private String nome;
-    private Double nota;
-
-    private int bimestre;
     private Double priBim;
     private Double segBim;
     private Double tercBim;
     private Double quarBim;
     private String disciplina;
 
-
-    public Aluno(String ra, String nome, String disciplina, String nota, String bimestre) {
-
-    }
 
     public Aluno() {
 
@@ -29,21 +22,11 @@ public class Aluno {
         this.ra = ra;
     }
 
-    public String getNome() {
-        return nome;
-    }
+    public String getNome() { return nome; }
 
     public void setNome(String nome) {
         this.nome = nome;
     }
-
-    public Double getNota() { return nota; }
-
-    public void setNota(Double nota) { this.nota = nota; }
-
-    public int getBimestre() { return bimestre; }
-
-    public void setBimestre(int bimestre) { this.bimestre = bimestre; }
 
     public Double getPriBim() {
         return priBim;
@@ -83,6 +66,15 @@ public class Aluno {
 
     public void setDisciplina(String disciplina) {
         this.disciplina = disciplina;
+    }
+
+    public double calcularMedia(Aluno aluno) {
+        Double priBim = aluno.getPriBim() != null ? aluno.getPriBim() : 0.0;
+        Double segBim = aluno.getSegBim() != null ? aluno.getSegBim() : 0.0;
+        Double tercBim = aluno.getTercBim() != null ? aluno.getTercBim() : 0.0;
+        Double quarBim = aluno.getQuarBim() != null ? aluno.getQuarBim() : 0.0;
+
+        return (priBim + segBim + tercBim + quarBim) / 4;
     }
 
 }

@@ -6,30 +6,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import br.unipar.studenttracker.model.Aluno;
 
-import java.util.ArrayList;
+import androidx.annotation.NonNull;
+
+import java.util.List;
 
 import br.unipar.studenttracker.R;
 import br.unipar.studenttracker.model.Aluno;
 
 public class NotaAdapter extends BaseAdapter {
 
-    private Context context;
-    private ArrayList<Aluno> lista;
+    private final Context context;
+    private final List<Aluno> alunos;
 
-    public NotaAdapter(Context context, ArrayList<Aluno> lista) {
+    public NotaAdapter(Context context, List<Aluno> alunos) {
         this.context = context;
-        this.lista = lista;
+        this.alunos = alunos;
     }
 
     @Override
     public int getCount() {
-        return lista.size();
+        return alunos.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return lista.get(position);
+        return alunos.get(position);
     }
 
     @Override
@@ -38,29 +41,26 @@ public class NotaAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View view, ViewGroup parent) {
-        if (view == null) {
-            view = LayoutInflater.from(context).inflate(R.layout.item_list_notas, parent, false);
-        }
+    public View getView(int position, View convertView, ViewGroup parent) {
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View rowView = inflater.inflate(R.layout.item_list_notas, parent, false);
 
-        Aluno notasAluno = lista.get(position);
+        TextView tvDisciplina = rowView.findViewById(R.id.tvDisciplina);
+        TextView tvMedia = rowView.findViewById(R.id.tvMedia);
+        TextView tvNotaPri = rowView.findViewById(R.id.tvNotaPri);
+        TextView tvNotaSeg = rowView.findViewById(R.id.tvNotaSeg);
+        TextView tvNotaTerc = rowView.findViewById(R.id.tvNotaTerc);
+        TextView tvNotaQuar = rowView.findViewById(R.id.tvNotaQuar);
 
-        TextView tvDisciplina = view.findViewById(R.id.tvDisciplina);
-        TextView tvMedia = view.findViewById(R.id.tvMedia);
-        TextView tvPriBim = view.findViewById(R.id.tvNotaPri);
-        TextView tvSegBim = view.findViewById(R.id.tvNotaSeg);
-        TextView tvTercBim = view.findViewById(R.id.tvNotaTerc);
-        TextView tvQuarBim = view.findViewById(R.id.tvNotaQuar);
+        Aluno aluno = alunos.get(position);
 
-        Double media = (notasAluno.getPriBim() + notasAluno.getSegBim() + notasAluno.getTercBim() + notasAluno.getQuarBim()) / 4;
+        tvDisciplina.setText("Disciplina: " + aluno.getDisciplina());
+        tvMedia.setText("Média: " + aluno.calcularMedia(aluno));
+        tvNotaPri.setText("1ºBim: " + aluno.getPriBim());
+        tvNotaSeg.setText("2ºBim: " + aluno.getSegBim());
+        tvNotaTerc.setText("3ºBim: " + aluno.getTercBim());
+        tvNotaQuar.setText("4ºBim: " + aluno.getQuarBim());
 
-        tvDisciplina.setText(notasAluno.getDisciplina());
-        tvPriBim.setText(context.getString(R.string.pri_bim_label) + " " + notasAluno.getPriBim());
-        tvSegBim.setText(context.getString(R.string.seg_bim_label) + " " + notasAluno.getSegBim());
-        tvTercBim.setText(context.getString(R.string.terc_bim_label) + " " + notasAluno.getTercBim());
-        tvQuarBim.setText(context.getString(R.string.quar_bim_label) + " " + notasAluno.getQuarBim());
-        tvMedia.setText(context.getString(R.string.media_label) + " " + media);
-
-        return view;
+        return rowView;
     }
 }

@@ -30,7 +30,7 @@
             android:text="DISCIPLINA:"/>
 
         <Spinner
-            android:id="@+id/select_ra"
+            android:id="@+id/spDisciplina"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp" />
