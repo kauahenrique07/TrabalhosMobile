@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:text="Cadastro de Clientes"
+            android:textColor="#000000"
+            android:textSize="25dp"></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:text="Código:"
+            android:textColor="#000000" />
+
+        <EditText
+            android:id="@+id/editCodigoCliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Informe o código do cliente"
+            android:inputType="number" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:text="Nome:"
+            android:textColor="#000000" />
+
+        <EditText
+            android:id="@+id/editNomeCliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Informe o nome do cliente"
+            android:inputType="text" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:text="CPF:"
+            android:textColor="#000000" />
+
+        <EditText
+            android:id="@+id/editCpfCliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Informe o CPF do cliente"
+            android:inputType="number" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:text="Data de Nascimento:"
+            android:textColor="#000000" />
+
+        <EditText
+            android:id="@+id/editDtNascCliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Informe a data de nascimento do cliente"
+            android:inputType="date" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginTop="15dp"
+            android:text="Código do Endereço:"
+            android:textColor="#000000" />
+
+        <EditText
+            android:id="@+id/editCodEnderecoCliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Informe o código do endereço do cliente"
+            android:inputType="number" />
+
+        <Button
+            android:id="@+id/btnSalvarCliente"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:text="Salvar" />
+
+    </LinearLayout>
+
+</ScrollView>
