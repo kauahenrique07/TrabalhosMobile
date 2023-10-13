@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pedido de Venda"
+            android:textColor="#000000"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="16dp"/>
+
+
+        <!-- Seleção do Cliente -->
+        <Spinner
+            android:id="@+id/spinnerCliente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Selecione o Cliente" />
+
+        <!-- Seleção do Item de Venda -->
+        <Spinner
+            android:id="@+id/spinnerItemVenda"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Selecione o Item de Venda" />
+
+        <!-- Quantidade, Valor Unitário e Unidade de Medida -->
+        <EditText
+            android:id="@+id/edtQuantidade"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Quantidade" />
+
+        <TextView
+            android:id="@+id/txtValorUnitario"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Valor Unitário: R$0.00" />
+
+        <TextView
+            android:id="@+id/txtUnidadeMedida"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Unidade de Medida: kg" />
+
+        <!-- Botão para adicionar item -->
+        <Button
+            android:id="@+id/btnAdicionarItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Adicionar Item ao Pedido" />
+
+        <!-- Lista de Itens Adicionados -->
+        <ListView
+            android:id="@+id/listItensPedido"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="200dp" />
+
+        <!-- Valor Total e Total de Itens -->
+        <TextView
+            android:id="@+id/txtValorTotal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Valor Total: R$0.00" />
+
+        <TextView
+            android:id="@+id/txtTotalItens"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Total de Itens: 0" />
+
+        <!-- Condição de Pagamento -->
+        <Spinner
+            android:id="@+id/spinnerCondicaoPagamento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Condição de Pagamento" />
+
+        <!-- Quantidade de Parcelas e Lista de Parcelas -->
+        <EditText
+            android:id="@+id/edtQuantidadeParcelas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Quantidade de Parcelas" />
+
+        <ListView
+            android:id="@+id/listParcelas"
+            android:layout_width="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_height="150dp" />
+
+        <!-- Endereço de Entrega -->
+        <Spinner
+            android:id="@+id/spinnerEnderecoEntrega"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:hint="Endereço de Entrega" />
+
+        <!-- Valor Total com Desconto/Acréscimo -->
+        <TextView
+            android:id="@+id/txtValorTotalFinal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Valor Total (com desconto/acréscimo): R$0.00" />
+
+        <!-- Botão para concluir o pedido -->
+        <Button
+            android:id="@+id/btnConcluirPedido"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Concluir Pedido" />
+
+    </LinearLayout>
+</ScrollView>
